@@ -1,7 +1,7 @@
 # Encoding: UTF-8
 #
 # Cookbook Name:: kindle
-# Recipe:: default
+# Library:: resource_kindle_app
 #
 # Copyright 2015 Jonathan Hartman
 #
@@ -18,8 +18,23 @@
 # limitations under the License.
 #
 
-include_recipe 'mac-app-store'
+class Chef
+  class Resource
+    # A Chef resource for the official Kindle app.
+    #
+    # @author Jonathan Hartman <j@p4nt5.com>
+    class KindleApp < MacAppStoreApp
+      self.resource_name = :kindle_app
 
-kindle_app 'default' do
-  action :install
+      #
+      # Overload the app name with the one for this app.
+      #
+      attribute :app_name, kind_of: String, default: 'Kindle'
+
+      #
+      # Overload the bundle ID with the one for this app.
+      #
+      attribute :bundle_id, kind_of: String, default: 'com.amazon.Kindle'
+    end
+  end
 end

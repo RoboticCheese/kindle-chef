@@ -1,7 +1,7 @@
 # Encoding: UTF-8
 #
 # Cookbook Name:: kindle
-# Recipe:: default
+# Library:: matchers
 #
 # Copyright 2015 Jonathan Hartman
 #
@@ -18,8 +18,10 @@
 # limitations under the License.
 #
 
-include_recipe 'mac-app-store'
+if defined?(ChefSpec)
+  ChefSpec.define_matcher(:kindle_app)
 
-kindle_app 'default' do
-  action :install
+  def install_kindle_app(name)
+    ChefSpec::Matchers::ResourceMatcher.new(:kindle_app, :install, name)
+  end
 end
