@@ -23,7 +23,7 @@ require 'chef/dsl/include_recipe'
 require 'chef/provider/lwrp_base'
 require_relative 'provider_kindle_app'
 require_relative 'provider_kindle_app_mac_os_x_app_store'
-# TODO: require_relative 'provider_kindle_app_mac_os_x_direct'
+require_relative 'provider_kindle_app_mac_os_x_direct'
 
 class Chef
   class Provider

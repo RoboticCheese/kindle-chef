@@ -57,6 +57,17 @@ Attributes:
 |------------|----------------|----------------------|
 | action     | `:install`     | Action(s) to perform |
 
+Providers
+=========
+
+***Chef::Provider::KindleApp::MacOsX::AppStore***
+
+Provider for doing installs from the Mac App Store (default for OS X)
+
+***Chef::Provider::KindleApp::MacOsX::Direct***
+
+Provider for downloading the .dmg file directly from Amazon.
+
 Contributing
 ============
 
