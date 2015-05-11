@@ -13,7 +13,7 @@ describe :provider_mapping do
     let(:platform) { :mac_os_x }
 
     it 'uses the MacAppStoreApp app provider' do
-      expect(app_provider).to eq(Chef::Provider::MacAppStoreApp)
+      expect(app_provider).to eq(Chef::Provider::KindleApp::MacOsX::AppStore)
     end
   end
 

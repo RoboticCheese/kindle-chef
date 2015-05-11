@@ -18,23 +18,24 @@
 # limitations under the License.
 #
 
+require 'chef/resource/lwrp_base'
+
 class Chef
   class Resource
     # A Chef resource for the official Kindle app.
     #
     # @author Jonathan Hartman <j@p4nt5.com>
-    class KindleApp < MacAppStoreApp
+    class KindleApp < Resource::LWRPBase
       self.resource_name = :kindle_app
+      actions :install
+      default_action :install
 
       #
-      # Overload the app name with the one for this app.
-      #
-      attribute :app_name, kind_of: String, default: 'Kindle'
-
-      #
-      # Overload the bundle ID with the one for this app.
-      #
-      attribute :bundle_id, kind_of: String, default: 'com.amazon.Kindle'
+      # Attribute for the app's installed status
+      attribute :installed,
+                kind_of: [NilClass, TrueClass, FalseClass],
+                default: nil
+      alias_method :installed?, :installed
     end
   end
 end

@@ -1,7 +1,7 @@
 # Encoding: UTF-8
 #
 # Cookbook Name:: kindle
-# Library:: provider_mapping
+# Library:: provider_kindle_app_mac_os_x
 #
 # Copyright 2015 Jonathan Hartman
 #
@@ -18,10 +18,23 @@
 # limitations under the License.
 #
 
-require 'chef/dsl'
-require 'chef/platform/provider_mapping'
+require 'etc'
+require 'chef/dsl/include_recipe'
+require 'chef/provider/lwrp_base'
 require_relative 'provider_kindle_app'
+require_relative 'provider_kindle_app_mac_os_x_app_store'
+# TODO: require_relative 'provider_kindle_app_mac_os_x_direct'
 
-Chef::Platform.set(platform: :mac_os_x,
-                   resource: :kindle_app,
-                   provider: Chef::Provider::KindleApp::MacOsX::AppStore)
+class Chef
+  class Provider
+    class KindleApp < Provider::LWRPBase
+      # An empty parent class for the Kindle for OS X providers.
+      #
+      # @author Jonathan Hartman <j@p4nt5.com>
+      class MacOsX < KindleApp
+        # `URL` varies by sub-provider
+        PATH ||= '/Applications/Kindle.app'
+      end
+    end
+  end
+end
