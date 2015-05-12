@@ -18,8 +18,6 @@
 # limitations under the License.
 #
 
-include_recipe 'mac-app-store' if node['platform'] == 'mac_os_x'
-
 kindle_app 'default' do
   action :install
 end
