@@ -11,6 +11,9 @@ platforms:
       box: roboticcheese/macosx-10.10
       ssh:
         insert_key: false
+  - name: windows-2012
+    driver:
+      box: roboticcheese/windows-2012
 
 suites:
   - name: default
@@ -24,3 +27,5 @@ suites:
     run_list:
       - recipe[kindle_test::mac_direct_download]
     attributes:
+    excludes:
+      - windows-2012

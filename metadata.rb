@@ -11,6 +11,8 @@ version          '0.0.1'
 
 depends          'mac-app-store', '~> 1.0'
 depends          'dmg', '~> 2.2'
+depends          'windows', '~> 1.36'
 
 supports         'mac_os_x'
+supports         'windows'
 # rubocop:enable SingleSpaceBeforeFirstArg

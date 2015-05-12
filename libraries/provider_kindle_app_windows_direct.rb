@@ -1,7 +1,7 @@
 # Encoding: UTF-8
 #
 # Cookbook Name:: kindle
-# Library:: provider_kindle_app_mac_os_x_direct
+# Library:: provider_kindle_app_windows_direct
 #
 # Copyright 2015 Jonathan Hartman
 #
@@ -21,33 +21,60 @@
 require 'net/http'
 require 'chef/provider/lwrp_base'
 require_relative 'provider_kindle_app'
-require_relative 'provider_kindle_app_mac_os_x'
+require_relative 'provider_kindle_app_windows'
 
 class Chef
   class Provider
     class KindleApp < Provider::LWRPBase
-      class MacOsX < KindleApp
-        # A Chef provider for OS X installs via direct download.
+      class Windows < KindleApp
+        # A Chef provider for Windows installs via direct download.
         #
         # @author Jonathan Hartman <j@p4nt5.com>
-        class Direct < MacOsX
-          URL ||= 'http://www.amazon.com/kindlemacdownload'
+        class Direct < Windows
+          URL ||= 'http://www.amazon.com/kindlepcdownload'
 
           private
 
           #
-          # Download and install the package. The dmg cookbook declares a
-          # remote_file resource inline, so we can do the download and install
-          # in one resource here.
-          #
           # (see KindleApp#install!)
           #
           def install!
+            download_package
+            install_package
+          end
+
+          #
+          # Download the installer via a remote_file resource.
+          #
+          def download_package
             s = remote_path
-            dmg_package 'Kindle' do
+            remote_file download_path do
               source s
+              action :create
+              only_if { !::File.exist?(PATH) }
+            end
+          end
+
+          #
+          # Run the installer via a windows_package resource.
+          #
+          def install_package
+            s = download_path
+            windows_package 'Amazon Kindle' do
+              source s
+              installer_type :nsis
               action :install
             end
+          end
+
+          #
+          # Construct a path to download the installer to.
+          #
+          # @return [String]
+          #
+          def download_path
+            ::File.join(Chef::Config[:file_cache_path],
+                        ::File.basename(remote_path))
           end
 
           #

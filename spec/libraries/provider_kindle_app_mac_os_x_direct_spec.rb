@@ -8,6 +8,13 @@ describe Chef::Provider::KindleApp::MacOsX::Direct do
   let(:new_resource) { Chef::Resource::KindleApp.new(name, nil) }
   let(:provider) { described_class.new(new_resource, nil) }
 
+  describe 'URL' do
+    it 'returns the correct URL' do
+      expected = 'http://www.amazon.com/kindlemacdownload'
+      expect(described_class::URL).to eq(expected)
+    end
+  end
+
   describe '#install!' do
     let(:remote_path) { 'http://example.com/Kindle.dmg' }
 
@@ -31,7 +38,7 @@ describe Chef::Provider::KindleApp::MacOsX::Direct do
 
     before(:each) do
       allow(Net::HTTP).to receive(:get_response)
-        .with(URI('https://www.amazon.com/kindlemacdownload'))
+        .with(URI('http://www.amazon.com/kindlemacdownload'))
         .and_return(response)
     end
 

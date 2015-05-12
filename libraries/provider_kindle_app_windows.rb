@@ -1,7 +1,7 @@
 # Encoding: UTF-8
 #
 # Cookbook Name:: kindle
-# Recipe:: default
+# Library:: provider_kindle_app_windows
 #
 # Copyright 2015 Jonathan Hartman
 #
@@ -18,8 +18,20 @@
 # limitations under the License.
 #
 
-include_recipe 'mac-app-store' if node['platform'] == 'mac_os_x'
+require 'chef/provider/lwrp_base'
+require_relative 'provider_kindle_app'
+require_relative 'provider_kindle_app_windows_direct'
 
-kindle_app 'default' do
-  action :install
+class Chef
+  class Provider
+    class KindleApp < Provider::LWRPBase
+      # An empty parent class for the Kindle for Windows providers.
+      #
+      # @author Jonathan Hartman <j@p4nt5.com>
+      class Windows < KindleApp
+        # `URL` varies by sub-provider
+        PATH ||= ::File.expand_path('/Program Files (x86)/Amazon/Kindle')
+      end
+    end
+  end
 end

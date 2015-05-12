@@ -21,7 +21,7 @@
 require 'chef/provider/lwrp_base'
 require_relative 'resource_kindle_app'
 require_relative 'provider_kindle_app_mac_os_x'
-# TODO: require_relative 'provider_kindle_app_windows'
+require_relative 'provider_kindle_app_windows'
 
 class Chef
   class Provider
