@@ -15,9 +15,9 @@ A Chef cookbook to install the Amazon Kindle app.
 Requirements
 ============
 
-This cookbook offers a recipe-based and a resource-based install. Use of the
-resource requires that you open a `mac_app_store` resource prior in your Chef
-run.
+This cookbook offers recipe-based and resource-based install options. It
+supports OS X (App Store or direct download) and Windows (direct download only)
+platforms.
 
 Usage
 =====
@@ -30,7 +30,8 @@ Recipes
 
 ***default***
 
-Opens the Mac App Store and performs a simple install of the app.
+Performs a simple install of the app using the default provider for your
+platform.
 
 Resources
 =========
@@ -62,11 +63,16 @@ Providers
 
 ***Chef::Provider::KindleApp::MacOsX::AppStore***
 
-Provider for doing installs from the Mac App Store (default for OS X)
+Provider for doing installs from the Mac App Store (default for OS X).
 
 ***Chef::Provider::KindleApp::MacOsX::Direct***
 
 Provider for downloading the .dmg file directly from Amazon.
+
+***Chef::Provider::KindleApp::Windows::Direct***
+
+Provider for downloading the .exe file directly from Amazon (default for
+Windows).
 
 Contributing
 ============
