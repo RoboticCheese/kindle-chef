@@ -1,7 +1,7 @@
 # Encoding: UTF-8
 #
 # Cookbook Name:: kindle
-# Library:: resource_kindle_app
+# Library:: provider_kindle_app_mac_os_x
 #
 # Copyright 2015 Jonathan Hartman
 #
@@ -18,24 +18,21 @@
 # limitations under the License.
 #
 
-require 'chef/resource/lwrp_base'
+require 'chef/provider/lwrp_base'
+require_relative 'provider_kindle_app'
+require_relative 'provider_kindle_app_mac_os_x_app_store'
+require_relative 'provider_kindle_app_mac_os_x_direct'
 
 class Chef
-  class Resource
-    # A Chef resource for the official Kindle app.
-    #
-    # @author Jonathan Hartman <j@p4nt5.com>
-    class KindleApp < Resource::LWRPBase
-      self.resource_name = :kindle_app
-      actions :install
-      default_action :install
-
+  class Provider
+    class KindleApp < Provider::LWRPBase
+      # An empty parent class for the Kindle for OS X providers.
       #
-      # Attribute for the app's installed status
-      attribute :installed,
-                kind_of: [NilClass, TrueClass, FalseClass],
-                default: nil
-      alias_method :installed?, :installed
+      # @author Jonathan Hartman <j@p4nt5.com>
+      class MacOsX < KindleApp
+        # `URL` varies by sub-provider
+        PATH ||= '/Applications/Kindle.app'
+      end
     end
   end
 end

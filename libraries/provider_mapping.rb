@@ -20,7 +20,11 @@
 
 require 'chef/dsl'
 require 'chef/platform/provider_mapping'
+require_relative 'provider_kindle_app'
 
 Chef::Platform.set(platform: :mac_os_x,
                    resource: :kindle_app,
-                   provider: Chef::Provider::MacAppStoreApp)
+                   provider: Chef::Provider::KindleApp::MacOsX::AppStore)
+Chef::Platform.set(platform: :windows,
+                   resource: :kindle_app,
+                   provider: Chef::Provider::KindleApp::Windows::Direct)
