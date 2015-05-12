@@ -9,6 +9,18 @@ describe Chef::Provider::KindleApp::MacOsX::AppStore do
   let(:provider) { described_class.new(new_resource, nil) }
 
   describe '#install!' do
+    before(:each) do
+      [:include_recipe, :mac_app_store_app].each do |r|
+        allow_any_instance_of(described_class).to receive(r)
+      end
+    end
+
+    it 'opens the Mac App Store' do
+      p = provider
+      expect(p).to receive(:include_recipe).with('mac-app-store')
+      p.send(:install!)
+    end
+
     it 'installs the app from the App Store' do
       p = provider
       expect(p).to receive(:mac_app_store_app).with('Kindle').and_yield

@@ -18,6 +18,7 @@
 # limitations under the License.
 #
 
+require 'chef/dsl/include_recipe'
 require 'chef/provider/lwrp_base'
 require_relative 'provider_kindle_app'
 require_relative 'provider_kindle_app_mac_os_x'
@@ -30,12 +31,15 @@ class Chef
         #
         # @author Jonathan Hartman <j@p4nt5.com>
         class AppStore < MacOsX
+          include Chef::DSL::IncludeRecipe
+
           private
 
           #
           # (see KindleApp#install!)
           #
           def install!
+            include_recipe 'mac-app-store'
             mac_app_store_app 'Kindle' do
               bundle_id 'com.amazon.Kindle'
               action :install
