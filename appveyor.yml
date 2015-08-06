@@ -1,6 +1,3 @@
-matrix:
-  fast_finish: true
-
 branches:
   only:
     - master
@@ -11,7 +8,8 @@ install:
 
 build_script:
   - chef exec bundle install
+  - copy .kitchen.appveyor.yml .kitchen.local.yml
 
 test_script:
-  - cp .kitchen.appveyor.yml .kitchen.local.yml
-  - chef exec kitchen test
+  - chef exec bundle exec rake
+  - chef exec bundle exec kitchen test -c 2

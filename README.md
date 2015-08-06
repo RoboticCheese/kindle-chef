@@ -2,7 +2,7 @@ Kindle Cookbook
 ===============
 [![Cookbook Version](https://img.shields.io/cookbook/v/kindle.svg)][cookbook]
 [![Build Status](https://img.shields.io/travis/RoboticCheese/kindle-chef.svg)][travis]
-[![Windows Build Status](https://img.shields.io/appveyor/ci/gruntjs/grunt.svg)][appveyor]
+[![Windows Build Status](https://img.shields.io/appveyor/ci/RoboticCheese/kindle-chef.svg)][appveyor]
 [![Code Climate](https://img.shields.io/codeclimate/github/RoboticCheese/kindle-chef.svg)][codeclimate]
 [![Coverage Status](https://img.shields.io/coveralls/RoboticCheese/kindle-chef.svg)][coveralls]
 

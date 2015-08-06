@@ -29,3 +29,4 @@ suites:
     attributes:
     excludes:
       - windows-2012
+      - windows

@@ -9,11 +9,11 @@ before_script:
   - cp .kitchen.travis.yml .kitchen.local.yml
 
 script:
-  - chef exec rake
+  - chef exec bundle exec rake
   # Run one suite locally, then uninstall and run the other
-  - chef exec kitchen test mac-direct-download-macosx
+  - chef exec bundle exec kitchen test mac-direct-download-macosx
   - rm -rf /Applications/Kindle.app
-  - chef exec kitchen test default-macosx
+  - chef exec bundle exec kitchen test default-macosx
 
 after_script:
 
