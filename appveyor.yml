@@ -6,7 +6,6 @@ branches:
     - master
 
 install:
-  - winrm quickconfig -q
   - cinst chefdk
   - SET PATH=C:\opscode\chefdk\bin;%PATH%
 
@@ -15,5 +14,4 @@ build_script:
 
 test_script:
   - cp .kitchen.appveyor.yml .kitchen.local.yml
-  - chef exec rake
   - chef exec kitchen test
