@@ -1,12 +1,17 @@
 matrix:
   fast_finish: true
 
+branches:
+  only:
+    - master
+
 install:
   - winrm quickconfig -q
   - cinst chefdk
-  - chef exec bundle install
+  - SET PATH=C:\opscode\chefdk\bin;%PATH%
 
 build_script:
+  - chef exec bundle install
 
 test_script:
   - cp .kitchen.appveyor.yml .kitchen.local.yml
