@@ -4,3 +4,15 @@ driver:
 
 platforms:
   - name: macosx
+
+suites:
+  - name: mac_direct_download
+    run_list:
+      - recipe[kindle_test::mac_direct_download]
+  - name: delete_and_default
+    run_list:
+      - recipe[kindle_test::delete_and_default]
+    attributes:
+      mac_app_store:
+        username: <%= ENV['APPLE_ID_USERNAME'] %>
+        password: <%= ENV['APPLE_ID_PASSWORD'] %>
