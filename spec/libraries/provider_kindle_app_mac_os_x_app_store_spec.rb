@@ -5,8 +5,9 @@ require_relative '../../libraries/provider_kindle_app_mac_os_x_app_store'
 
 describe Chef::Provider::KindleApp::MacOsX::AppStore do
   let(:name) { 'default' }
-  let(:new_resource) { Chef::Resource::KindleApp.new(name, nil) }
-  let(:provider) { described_class.new(new_resource, nil) }
+  let(:run_context) { ChefSpec::SoloRunner.new.converge.run_context }
+  let(:new_resource) { Chef::Resource::KindleApp.new(name, run_context) }
+  let(:provider) { described_class.new(new_resource, run_context) }
 
   describe '#install!' do
     before(:each) do
