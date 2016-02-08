@@ -31,7 +31,7 @@ class Chef
         #
         # @author Jonathan Hartman <j@p4nt5.com>
         class Direct < Windows
-          URL ||= 'http://www.amazon.com/kindlepcdownload'
+          URL ||= 'http://www.amazon.com/kindlepcdownload'.freeze
 
           private
 

@@ -31,7 +31,7 @@ class Chef
         #
         # @author Jonathan Hartman <j@p4nt5.com>
         class Direct < MacOsX
-          URL ||= 'http://www.amazon.com/kindlemacdownload'
+          URL ||= 'http://www.amazon.com/kindlemacdownload'.freeze
 
           private
 

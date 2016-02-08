@@ -31,7 +31,7 @@ class Chef
       # @author Jonathan Hartman <j@p4nt5.com>
       class MacOsX < KindleApp
         # `URL` varies by sub-provider
-        PATH ||= '/Applications/Kindle.app'
+        PATH ||= '/Applications/Kindle.app'.freeze
       end
     end
   end
