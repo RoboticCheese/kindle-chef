@@ -8,9 +8,11 @@ description      'Installs/Configures the Kindle app'
 long_description 'Installs/Configures the Kindle app'
 version          '0.1.1'
 
-depends          'mac-app-store', '~> 1.0'
-depends          'dmg', '~> 2.2'
-depends          'windows', '~> 1.36'
+source_url 'https://github.com/roboticcheese/kindle-chef'
+issues_url 'https://github.com/roboticcheese/kindle-chef/issues'
 
-supports         'mac_os_x'
-supports         'windows'
+depends 'mac-app-store', '~> 2.0'
+depends 'dmg', '~> 2.2'
+
+supports 'mac_os_x'
+supports 'windows'

@@ -18,24 +18,26 @@
 # limitations under the License.
 #
 
-require 'chef/resource/lwrp_base'
+require 'chef/resource'
 
 class Chef
   class Resource
     # A Chef resource for the official Kindle app.
     #
     # @author Jonathan Hartman <j@p4nt5.com>
-    class KindleApp < Resource::LWRPBase
-      self.resource_name = :kindle_app
-      actions :install
+    class KindleApp < Resource
       default_action :install
 
       #
-      # Attribute for the app's installed status
-      attribute :installed,
-                kind_of: [NilClass, TrueClass, FalseClass],
-                default: nil
-      alias installed? installed
+      # Follow the redirect from URL to get the .exe file download path. Save
+      # it as an instance variable so we only have to hit Amazon's web server
+      # once.
+      #
+      # @return [String] the download_url
+      #
+      def remote_path
+        @remote_path ||= Net::HTTP.get_response(URI(url))['location']
+      end
     end
   end
 end

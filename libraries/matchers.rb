@@ -19,9 +19,15 @@
 #
 
 if defined?(ChefSpec)
-  ChefSpec.define_matcher(:kindle_app)
+  {
+    kindle_app: %i(install upgrade)
+  }.each do |matcher, actions|
+    ChefSpec.define_matcher(matcher)
 
-  def install_kindle_app(name)
-    ChefSpec::Matchers::ResourceMatcher.new(:kindle_app, :install, name)
+    actions.each do |action|
+      define_method("#{action}_#{matcher}") do |name|
+        ChefSpec::Matchers::ResourceMatcher.new(matcher, action, name)
+      end
+    end
   end
 end

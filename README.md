@@ -21,6 +21,10 @@ This cookbook offers recipe-based and resource-based install options. It
 supports OS X (App Store or direct download) and Windows (direct download only)
 platforms.
 
+As of v1.0.0, it requires Chef 12.5+ or Chef 12.x and the
+[compat_resource](https://supermarket.chef.io/cookbooks/compat_resource)
+cookbook.
+
 Usage
 =====
 
@@ -32,8 +36,7 @@ Recipes
 
 ***default***
 
-Performs a simple install of the app using the default provider for your
-platform.
+Performs a simple install of the app using the defaults for your platform.
 
 Resources
 =========
@@ -50,31 +53,23 @@ Syntax:
 
 Actions:
 
-| Action     | Description     |
-|------------|-----------------|
-| `:install` | Install the app |
+| Action       | Description     |
+|--------------|-----------------|
+| `:install`   | Install the app |
+| \*`:upgrade` | Upgrade the app |
 
-Attributes:
+\* For OS X app store installs only.
 
-| Attribute  | Default        | Description          |
-|------------|----------------|----------------------|
-| action     | `:install`     | Action(s) to perform |
+Properties:
 
-Providers
-=========
+| Property  | Default     | Description                |
+|------------|------------|----------------------------|
+| source     | \*\*       | Source to install from\*\* |
+| action     | `:install` | Action(s) to perform       |
 
-***Chef::Provider::KindleApp::MacOsX::AppStore***
+\*\* OS X supports `:app_store` (default) and `:direct` download. Windows
+supports `:direct` download only.
 
-Provider for doing installs from the Mac App Store (default for OS X).
-
-***Chef::Provider::KindleApp::MacOsX::Direct***
-
-Provider for downloading the .dmg file directly from Amazon.
-
-***Chef::Provider::KindleApp::Windows::Direct***
-
-Provider for downloading the .exe file directly from Amazon (default for
-Windows).
 
 Contributing
 ============

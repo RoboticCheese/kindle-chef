@@ -18,6 +18,4 @@
 # limitations under the License.
 #
 
-kindle_app 'default' do
-  action :install
-end
+kindle_app 'default'
