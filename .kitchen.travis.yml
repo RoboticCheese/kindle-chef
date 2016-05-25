@@ -16,3 +16,5 @@ suites:
       mac_app_store:
         username: <%= ENV['APPLE_ID_USERNAME'] %>
         password: <%= ENV['APPLE_ID_PASSWORD'] %>
+        mas:
+          version: 1.2.0

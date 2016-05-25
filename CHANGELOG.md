@@ -1,8 +1,10 @@
 Kindle Cookbook CHANGELOG
 =========================
 
-v?.?.? (????-??-??)
--------------------
+Unreleased
+----------
+- Convert to custom resources, breaking compatibility with Chef < 12
+- Update to use mac-app-store cookbook 2.x
 
 v0.1.0 (2015-05-11)
 -------------------
